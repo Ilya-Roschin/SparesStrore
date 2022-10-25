@@ -1,0 +1,177 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Login Customer</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            color: darkgray;
+        }
+
+        header {
+            background-color: cadetblue;
+            height: 75px;
+            margin-bottom: 50px;
+        }
+
+        header div {
+            height: auto;
+            padding: 20px 0;
+        }
+
+        header ul {
+            max-width: 33%;
+            min-width: 10%;
+            display: inline;
+        }
+
+        header a {
+            color: azure;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 24px;
+        }
+
+        .open-purchase,
+        .confirmed-purchase,
+        .sent-purchase {
+            background-color: aliceblue;
+            border: 1px dotted cadetblue;
+            padding: 15px;
+            margin: 30px 20px;
+            width: 300px;
+            display: inline-block;
+        }
+
+        .confirmed-purchase {
+            border-style: dashed;
+        }
+
+        .sent-purchase {
+            border-style: solid;
+        }
+
+        label {
+            font-size: 200%;
+            text-align: center;
+            border-bottom: 1px solid cadetblue;
+            padding-bottom: 10px;
+            margin: 20px;
+        }
+
+        button {
+            background-color: cadetblue;
+            color: azure;
+            padding: 5px 15px;
+            margin: 10px 0;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+
+    <div id="menu">
+        <!-- Меню -->
+        <ul>
+            {{#links}}
+              <a href="{{link}}">{{namePage}}</a>
+            {{/links}}
+        </ul>
+    </div>
+</header>
+
+<div>
+    <label> Корзина</label>
+</div>
+
+{{#openPurchases}}
+    <div class="open-purchase">
+        {{#items}}
+            {{#spare}}
+                <div>
+                    <b>товар </b>
+                    <span>{{spareName}}</span>
+                </div>
+                <div>
+                    <b>количество </b>
+                    <span>{{count}}</span>
+                </div>
+                <div>
+                    <b>цена за единицу </b>
+                    <span>{{price}}</span>
+                </div>
+                <form action="/order/item/delete/{{itemId}}" method="post">
+                    <button type="submit">X</button>
+                </form>
+            {{/spare}}
+        {{/items}}
+    </div>
+
+    <form style="margin: 0 20px" action="/order/sent/{{purchaseId}}" method="post">
+        <button type="submit">завершить заказ</button>
+    </form>
+{{/openPurchases}}
+
+<div>
+    <label> Заказ подтвержден</label>
+</div>
+
+{{#confirmedPurchases}}
+    <div class="confirmed-purchase">
+        {{#items}}
+            {{#spare}}
+                <div>
+                    <b>товар </b>
+                    <span>{{spareName}}</span>
+                </div>
+                <div>
+                    <b>количество </b>
+                    <span>{{count}}</span>
+                </div>
+                <div>
+                    <b>цена за единицу </b>
+                    <span>{{price}}</span>
+                </div>
+            {{/spare}}
+        {{/items}}
+        <form action="/order/close/{{purchaseId}}" method="post">
+            <button type="submit">подтвердить получение</button>
+        </form>
+    </div>
+{{/confirmedPurchases}}
+
+<div>
+    <label> Заказ получен</label>
+</div>
+
+{{#sentPurchases}}
+    <div class="sent-purchase">
+        {{#items}}
+            {{#spare}}
+                <div>
+                    <b>товар </b>
+                    <span>{{spareName}}</span>
+                </div>
+                <div>
+                    <b>количество </b>
+                    <span>{{count}}</span>
+                </div>
+                <div>
+                    <b>цена за единицу </b>
+                    <span>{{price}}</span>
+                </div>
+            {{/spare}}
+        {{/items}}s
+    </div>
+
+{{/sentPurchases}}
+</body>
+
+</html>

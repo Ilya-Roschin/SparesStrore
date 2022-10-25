@@ -1,0 +1,171 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Login Customer</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            color: darkgray;
+        }
+
+        header {
+            background-color: cadetblue;
+            height: 75px;
+            margin-bottom: 50px;
+        }
+
+        header div {
+            height: auto;
+            padding: 20px 0;
+        }
+
+        header ul {
+            max-width: 33%;
+            min-width: 10%;
+            display: inline;
+        }
+
+        header a {
+            color: azure;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 24px;
+        }
+
+        .new-spare-form {
+            max-width: 700px;
+            margin: 15px auto;
+            padding: 15px;
+            background-color: aliceblue;
+            border: 1px solid black;
+        }
+
+        .new-spare-form p {
+            padding: 5px 0;
+        }
+
+        .new-spare-form button,
+        .spare button {
+            padding: 5px 0;
+            color: azure;
+            background-color: cadetblue;
+            font-size: medium;
+            border: none;
+            padding: 5px 15px;
+            margin-top: 15px;
+        }
+
+        .spare {
+            width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid cadetblue;
+        }
+
+        .spare form {
+            display: inline;
+        }
+
+        .spare img {
+            width: 300px;
+            margin: 0 25%;
+        }
+
+        .buttons {
+            text-align: center;
+            margin: 0 25%;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+
+    <div id="menu">
+        <!-- Меню -->
+        <ul>
+            {{#links}}
+               <a href="{{link}}">{{namePage}}</a>
+            {{/links}}
+        </ul>
+    </div>
+</header>
+
+<form class="new-spare-form" method="post" enctype="multipart/form-data">
+    <p>
+        <input type="text" name="name" placeholder="Product name" />
+    </p>
+    <p>
+        <input type="text" name="price" placeholder="Price">
+    </p>
+    <p>
+        <input type="file" name="file">
+    </p>
+    <!--    <p>-->
+    <!--        <input type="text" name="status" placeholder="Status">-->
+    <!--    </p>-->
+    <!--    <label for="cars">Choose a category:</label>-->
+
+    <select name="categoryId">
+        {{#categories}}
+            <div>
+                <option value="{{categoryId}}">{{categoryName}}</option>
+            </div>
+        {{/categories}}
+    </select>
+    <select name="carId">
+        {{#cars}}
+            <div>
+                <option value="{{carId}}">{{carName}}</option>
+            </div>
+        {{/cars}}
+    </select>
+
+
+    <button type="submit">ADD</button>
+</form>
+
+
+{{#spares}}
+    <div class="spare">
+        <img src="{{spareUrl}}" alt="здесь могло быть фото продукта" />
+        <div>
+            <b>цена: </b>>
+            <span>{{price}}</span>
+        </div>
+        <div>
+            {{#category}}
+                <b>категория: </b>>
+                <span>{{categoryName}}</span>
+            {{/category}}
+        </div>
+        <div>
+            {{#car}}
+                <b>автомобиль: </b>>
+                <span>{{carName}}</span>
+            {{/car}}
+        </div>
+        <div>
+            <b>деталь: </b>>
+            <span>{{spareName}}</span>
+        </div>
+        <div class="buttons">
+            <form action="/spares/delete/{{spareId}}" method="post">
+                <button type="submit">delete</button>
+            </form>
+            <form action="/spares/update/{{spareId}}" method="get">
+                <button type="submit">update</button>
+            </form>
+        </div>
+    </div>
+
+{{/spares}}
+
+</body>
+
+</html>

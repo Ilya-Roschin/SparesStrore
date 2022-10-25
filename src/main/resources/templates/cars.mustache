@@ -1,0 +1,130 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Login Customer</title>
+    <style>
+       * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            color: darkgray;
+        }
+
+        body {
+            padding: 0 auto;
+        }
+
+        header {
+            background-color: cadetblue;
+            height: 75px;
+        }
+
+        header div {
+            height: auto;
+            padding: 20px 0;
+        }
+
+        header ul {
+            max-width: 33%;
+            min-width: 10%;
+            display: inline;
+        }
+
+        header a {
+            color: azure;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 24px;
+        }
+
+        .new-car-form {
+            max-width: 700px;
+            margin: 15px auto;
+            padding: 15px;
+            background-color: aliceblue;
+            border: 1px solid cadetblue;
+        }
+
+        .new-car-form p {
+            padding: 5px 0;
+        }
+
+        .new-car-form button, .car button {
+            padding: 5px 0;
+            color: azure;
+            background-color: cadetblue;
+            font-size: medium;
+            border: none;
+            padding: 5px 15px;
+            margin-top: 15px;
+        }
+
+        .car button {
+            margin: 15px 10px;
+        }
+
+        .car {
+            text-align: center;
+            width: 600px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .car form {
+            display: inline;
+            margin: 10px 0;
+        }
+
+        .car img {
+            width: 600px;
+        }
+
+    </style>
+</head>
+
+<body>
+<header>
+
+    <div id="menu"> <!-- Меню -->
+        <ul>
+            {{#links}}
+                <a href="{{link}}">{{namePage}}</a>
+            {{/links}}
+        </ul>
+    </div>
+</header>
+
+<form class="new-car-form" enctype="multipart/form-data" method="post">
+    <p>
+        <input type="text" name="name" placeholder="Car name"/>
+    </p>
+    <p>
+        <input type="text" name="brand" placeholder="Brand">
+    </p>
+    <p>
+        <input type="file" name="file">
+    </p>
+    <button type="submit">ADD</button>
+</form>
+
+
+{{#cars}}
+    <div class="car" >
+        <span>{{carName}}</span>
+        <span>{{brand}}</span>
+        <div>
+            <img src="{{carUrl}}" alt="здесь могло быть фото продукта"/>
+            <!--        <img src="../../{url}}" alt="здесь могло быть фото продукта"/>-->
+        </div>
+        <form action="/cars/delete/{{carId}}" method="post">
+            <button type="submit">delete</button>
+        </form>
+        <form action="/cars/update/{{carId}}" method="get">
+            <button type="submit">update</button>
+        </form>
+    </div>
+{{/cars}}
+
+</body>
+</html>

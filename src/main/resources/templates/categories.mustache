@@ -1,0 +1,116 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Login Customer</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            color: darkgray;
+        }
+
+        body {
+            padding: 0 auto;
+        }
+
+        header {
+            background-color: cadetblue;
+            height: 75px;
+        }
+
+        header div {
+            height: auto;
+            padding: 20px 0;
+        }
+
+        header ul {
+            max-width: 33%;
+            min-width: 10%;
+            display: inline;
+        }
+
+        header a {
+            color: azure;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 24px;
+        }
+
+        .new-category-form {
+            max-width: 700px;
+            margin: 15px auto;
+            padding: 15px;
+            background-color: aliceblue;
+            border: 1px solid black;
+        }
+
+        .new-category-form p {
+            padding: 5px 0;
+        }
+
+        .new-category-form button {
+            padding: 5px 0;
+            color: azure;
+            background-color: cadetblue;
+            font-size: medium;
+            border: none;
+            padding: 5px 15px;
+            margin-top: 15px;
+        }
+
+        .category {
+            width: auto;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #054;
+            background-color: #dfe;
+        }
+
+        .category form, .category span {
+            display: inline;
+        }
+
+        .category button {
+            background-color: cadetblue;
+            color: azure;
+            padding: 5px 10px;
+            border: none;
+        }
+
+    </style>
+</head>
+
+<body>
+<header>
+
+    <div id="menu"> <!-- Меню -->
+        <ul>
+            {{#links}}
+               <a href="{{link}}">{{namePage}}</a>
+            {{/links}}
+        </ul>
+    </div>
+</header>
+
+<form class="new-category-form" method="post" action="/category/create">
+    <p>
+        <input type="text" name="categoryName" placeholder="Product name"/>
+    </p>
+    <button type="submit">Create</button>
+</form>
+
+{{#categories}}
+    <div class="category">
+        <b>{{categoryId}}</b>
+        <span>{{categoryName}}</span>
+        <form action="/category/delete/{{categoryId}}" method="post">
+            <button type="submit">delete</button>
+        </form>
+    </div>
+{{/categories}}
+
+</body>
+</html>

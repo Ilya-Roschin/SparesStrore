@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            color: darkgray;
+        }
+
+        body {
+            padding: 0 auto;
+        }
+
+        .container {
+            width: 600px;
+            height: 300px;
+            margin: 10% auto;
+            padding: 20px;
+            background-color: aliceblue;
+            border: 1px solid cadetblue;
+        }
+
+        h2 {
+            text-align: center;
+            padding: 15px 0;
+            font-size: 200%;
+        }
+
+        p {
+            font-size: 150%;
+            padding: 5px 0;
+        }
+
+        label {
+            padding-right: 20px;
+        }
+
+        input {
+            width: 150px;
+            height: 20px;
+        }
+
+        button {
+            color: azure;
+            border: none;
+            background-color: cadetblue;
+            font-size: 200%;
+            padding: 5px 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <form class="form-signin" method="post" action="/auth/login">
+        <h2 class="form-signin-heading">Login логин</h2>
+        <p>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required>
+        </p>
+        <p>
+            <label style="margin-right: 5px" for="password">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+        </p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+    </form>
+
+    <form action="reg">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Registration</button>
+    </form>
+
+
+</div>
+</body>
+</html>
